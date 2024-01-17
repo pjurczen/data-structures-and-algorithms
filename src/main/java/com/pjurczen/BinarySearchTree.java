@@ -2,7 +2,7 @@ package com.pjurczen;
 
 import java.util.Objects;
 
-public class BinaryTree {
+public class BinarySearchTree {
 
     private Node<Integer> root;
 

@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BinaryTreeTest {
+class BinarySearchTreeTest {
 
     @Test
     void addAndSearch() {
-        final var binaryTree = new BinaryTree();
+        final var binaryTree = new BinarySearchTree();
         binaryTree.add(5);
         binaryTree.add(2);
         binaryTree.add(8);
