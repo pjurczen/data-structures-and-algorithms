@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LinkedListTest {
 
     @Test
-    void insert() {
+    void linkedList() {
         final var linkedList = new LinkedList<String>();
         linkedList.insert("Test");
         linkedList.insert("Test1");
