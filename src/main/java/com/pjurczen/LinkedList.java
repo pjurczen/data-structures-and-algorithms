@@ -4,7 +4,7 @@ public class LinkedList<T> {
 
     private Node<T> head;
 
-    public void insert(T value) {
+    public void add(T value) {
         final var node = new Node<>(value);
         if (head == null) {
             head = node;

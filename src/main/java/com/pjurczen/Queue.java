@@ -1,6 +1,6 @@
 package com.pjurczen;
 
-public class DoubleLinkedList<T> {
+public class Queue<T> {
 
     private Node<T> head;
     private Node<T> tail;
@@ -15,6 +15,14 @@ public class DoubleLinkedList<T> {
             this.tail.next = node;
             this.tail = node;
         }
+    }
+
+    public T poll() {
+        final var result = head;
+        if (head.next != null) {
+            head = head.next;
+        }
+        return result.value;
     }
 
     public static class Node<T> {

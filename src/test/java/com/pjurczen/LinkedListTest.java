@@ -9,9 +9,9 @@ class LinkedListTest {
     @Test
     void linkedList() {
         final var linkedList = new LinkedList<String>();
-        linkedList.insert("Test");
-        linkedList.insert("Test1");
-        linkedList.insert("Test2");
+        linkedList.add("Test");
+        linkedList.add("Test1");
+        linkedList.add("Test2");
         assertThat(linkedList.get(0)).isEqualTo("Test");
         assertThat(linkedList.get(1)).isEqualTo("Test1");
         assertThat(linkedList.get(2)).isEqualTo("Test2");
