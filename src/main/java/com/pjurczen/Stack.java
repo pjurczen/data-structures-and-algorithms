@@ -5,7 +5,7 @@ public class Stack<T> {
     private Node<T> head;
     private Node<T> tail;
 
-    public void add(T value) {
+    public void push(T value) {
         final var node = new Node<>(value);
         if (head == null) {
             head = node;
@@ -17,7 +17,7 @@ public class Stack<T> {
         }
     }
 
-    public T poll() {
+    public T pop() {
         final var result = tail;
         if (tail.previous != null) {
             tail = tail.previous;
