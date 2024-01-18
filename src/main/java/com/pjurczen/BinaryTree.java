@@ -2,6 +2,7 @@ package com.pjurczen;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -13,6 +14,23 @@ public class BinaryTree {
         } else {
             addToFirstFreeNode(value);
         }
+    }
+
+    public String renderDepthFirst() {
+        final var strBuilder = new StringBuilder();
+        strBuilder.append(root);
+        visitRecursively(root.left, strBuilder);
+        visitRecursively(root.right, strBuilder);
+        return strBuilder.toString();
+    }
+
+    private void visitRecursively(Node<Integer> node, StringBuilder stringBuilder) {
+        if (node == null) {
+            return;
+        }
+        stringBuilder.append(node);
+        visitRecursively(node.left, stringBuilder);
+        visitRecursively(node.right, stringBuilder);
     }
 
     public String renderBreadthFirst() {
