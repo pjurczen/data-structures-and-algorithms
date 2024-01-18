@@ -13,7 +13,7 @@ public class QuickSort {
     private int partition(int[] input, int low, int high) {
         int pivot = input[high];
         int i = low - 1;
-        for (int j=low; j <= high - 1; j++) {
+        for (int j=low; j < high; j++) {
             if (input[j] < pivot) {
                 i++;
                 swap(input, i, j);
