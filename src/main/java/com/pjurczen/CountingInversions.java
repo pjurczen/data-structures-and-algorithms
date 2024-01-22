@@ -22,7 +22,7 @@ public class CountingInversions {
         final int[] output = new int[B.length + C.length];
         int i=0, j=0;
         int k = 0;
-        int inversionsCount = 0;
+        long inversionsCount = 0;
         while (i < B.length && j < C.length) {
             if (B[i] <= C[j]) {
                 output[k] = B[i];
@@ -49,14 +49,14 @@ public class CountingInversions {
 
     public static class SortedArrayWithInversions {
         public int[] sortedArray;
-        public int inversionsCount;
+        public long inversionsCount;
 
-        private SortedArrayWithInversions(int[] sortedArray, int inversionsCount) {
+        private SortedArrayWithInversions(int[] sortedArray, long inversionsCount) {
             this.sortedArray = sortedArray;
             this.inversionsCount = inversionsCount;
         }
 
-        public static SortedArrayWithInversions sortedArrayWithInversions(int[] sortedArray, int inversionsCount) {
+        public static SortedArrayWithInversions sortedArrayWithInversions(int[] sortedArray, long inversionsCount) {
             return new SortedArrayWithInversions(sortedArray, inversionsCount);
         }
     }
