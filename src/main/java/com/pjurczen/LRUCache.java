@@ -1,25 +1,74 @@
 package com.pjurczen;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LRUCache {
 
-    private final LinkedList<Integer> cache = new LinkedList<>();
-    private final int capacity = 3;
+    private final Map<Integer, CacheEntry> cache = new HashMap<>();
+    private CacheEntry newest;
+    private CacheEntry oldest;
+    private final int capacity;
 
-    public void add(Integer value) {
-        // O(N) iterates through all elements!
-        cache.remove(value);
-        if (cache.size() == capacity) {
-            // O(1) has tail
-            cache.removeLast();
-        }
-        // O (1) has head
-        cache.addFirst(value);
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.newest = new CacheEntry(0, 0);
+        this.oldest = new CacheEntry(0, 0);
+        this.newest.next = this.oldest;
+        this.oldest.previous = this.newest;
     }
 
-    public List<Integer> getValues() {
-        return cache.stream().toList();
+    public int get(int key) {
+        if (cache.containsKey(key)) {
+            var cacheEntry = cache.get(key);
+            remove(cacheEntry);
+            insertFirst(cacheEntry);
+            return cacheEntry.value;
+        }
+        return -1;
+    }
+
+    public void put(int key, int value) {
+        if (cache.containsKey(key)) {
+            var cacheEntry = cache.get(key);
+            cacheEntry.value = value;
+            remove(cacheEntry);
+            insertFirst(cacheEntry);
+        } else {
+            var cacheEntry = new CacheEntry(key, value);
+            cache.put(key, cacheEntry);
+            insertFirst(cacheEntry);
+            if (cache.size() > capacity) {
+                var toPurge = oldest.previous;
+                cache.remove(toPurge.key);
+                remove(toPurge);
+            }
+        }
+    }
+
+    private void remove(CacheEntry cacheEntry) {
+        var prev = cacheEntry.previous;
+        var next = cacheEntry.next;
+        prev.next = next;
+        next.previous = prev;
+    }
+
+    private void insertFirst(CacheEntry cacheEntry) {
+        cacheEntry.previous = this.newest;
+        cacheEntry.next = this.newest.next;
+        this.newest.next.previous = cacheEntry;
+        this.newest.next = cacheEntry;
+    }
+
+    static class CacheEntry {
+        public int key;
+        public int value;
+        public CacheEntry previous;
+        public CacheEntry next;
+
+        public CacheEntry(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }
